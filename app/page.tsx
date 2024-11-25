@@ -5,6 +5,7 @@ import FormInput from "@/components/form-input";
 import { useActionState } from "react";
 import { createAccount } from "@/app/login/action";
 import { HiFire } from "react-icons/hi";
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function Home() {
   const [state, action] = useActionState(createAccount, null);
@@ -34,9 +35,12 @@ export default function Home() {
           />
           <Button text="Log in" />
           {state?.success && (
-            <span className="text-black font-medium p-3 pl-10 bg-green-500 rounded-md">
-              {state.success}
-            </span>
+            <div className="text-black font-medium p-3 pl-10 bg-green-500 rounded-lg flex relative">
+              <span className="absolute left-2 text-xl mt-0.5 ml-1">
+                <FaCheckCircle />
+              </span>
+              <span>{state.success}</span>
+            </div>
           )}
         </form>
       </div>

@@ -24,10 +24,9 @@ export default function FormInput({
     if (name === "username") return <IoIosPerson />;
     if (name === "password") return <IoKey />;
   };
-  console.log(prop);
   return (
-    <div className="flex flex-col items-center gap-2 w-96">
-      <span className="absolute left-[780px] text-xl mt-2.5">{setIcon()}</span>
+    <div className="flex flex-row items-center gap-2 w-96 relative">
+      <span className="absolute left-2 text-xl m-1">{setIcon()}</span>{" "}
       <input
         name={name}
         className={`bg-white rounded-full w-full h-10 ring-2 border-none focus:ring-4 pl-12 transition ${
@@ -45,5 +44,6 @@ export default function FormInput({
         </span>
       ))}
     </div>
+    // ... existing code ...
   );
 }
