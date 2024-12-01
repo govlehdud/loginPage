@@ -5,17 +5,11 @@ import { InputHTMLAttributes } from "react";
 
 interface IFormInput {
   name: string;
-  // type: string;
-  // placeholder: string;
-  // required: boolean;
   errors?: string[];
   prop?: string;
 }
 
 export default function FormInput({
-  // type,
-  // placeholder,
-  // required,
   prop,
   name,
   errors = [],
@@ -26,6 +20,7 @@ export default function FormInput({
     if (name === "email") return <IoIosMail />;
     if (name === "username") return <IoIosPerson />;
     if (name === "password") return <IoKey />;
+    if (name === "confirm_password") return <IoKey />;
   };
   return (
     <div className="flex flex-col items-center gap-2 w-96 relative">
