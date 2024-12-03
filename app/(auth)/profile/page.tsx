@@ -23,6 +23,10 @@ export default async function Profile() {
     session.destroy();
     redirect("/");
   };
+  const homeBtn = async () => {
+    "use server";
+    redirect("/");
+  };
   return (
     <div className="flex flex-col gap-10 py-8 px-6 items-center">
       <h1 className="text-2xl">welcome! {user?.username}</h1>
@@ -30,8 +34,16 @@ export default async function Profile() {
       <p className="text-lg">my email : {user?.email}</p>
       <p className="text-lg">myname : {user?.username}</p>
       <form action={logOut}>
-        <button className="bg-black text-white rounded-md p-2">Log out</button>
+        <button className="bg-black text-white rounded-md p-2 hover:bg-gray-700 cursor-pointer">
+          Log out
+        </button>
       </form>
+      <input
+        className="bg-black text-white rounded-md p-2 hover:bg-gray-700 cursor-pointer"
+        type="button"
+        value="Home"
+        onClick={homeBtn}
+      />
     </div>
   );
 }

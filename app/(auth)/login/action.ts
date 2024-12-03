@@ -57,7 +57,7 @@ export async function login(prevState: any, formData: FormData) {
       const session = await getSession();
       session.id = user!.id;
       await session.save();
-      redirect("/profile");
+      redirect("/");
     } else {
       return {
         password: ["Wrong password."],

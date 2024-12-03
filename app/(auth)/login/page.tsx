@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 
-import Button from "@/components/form-button";
-import FormInput from "@/components/form-input";
+import Button from "@/components/(common)/form-button";
+import FormInput from "@/components/(common)/form-input";
 import { useActionState } from "react";
-import { login } from "@/app/login/action";
+import { login } from "@/app/(auth)/login/action";
 import { HiFire } from "react-icons/hi";
 import { FaCheckCircle } from "react-icons/fa";
 import { PASSWORD_MIN_LENGTH, USERNAME_MIN_LENGTH } from "@/lib/constants";

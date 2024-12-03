@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "@/components/form-button";
-import FormInput from "@/components/form-input";
-import { createAccount } from "./action";
+import Button from "@/components/(common)/form-button";
+import FormInput from "@/components/(common)/form-input";
+import { createAccount } from "@/app/(auth)/create-account/action";
 import { useActionState } from "react";
 
 export default function LogIn() {
