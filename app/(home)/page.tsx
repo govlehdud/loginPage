@@ -1,8 +1,9 @@
 import { Prisma } from "@prisma/client";
 import React from "react";
-// import getSession from "@/lib/session";
+import { PlusIcon } from "@heroicons/react/24/solid";
 import db from "@/lib/db";
 import TweetList from "@/components/(tweet)/tweet-list";
+import Link from "next/link";
 async function getTwitter() {
   const twitter = await db.tweet.findMany({
     select: {
@@ -30,6 +31,12 @@ export default async function Home() {
   const tweets = await getTwitter();
   return (
     <div className="flex flex-col items-center justify-center gap-5 p-5 pt-52">
+      <Link
+        href="/tweet"
+        className="bg-orange-500 flex items-center justify-center rounded-full size-16 fixed top-24 text-white transition-colors hover:bg-orange-400"
+      >
+        <PlusIcon className="size-10" />
+      </Link>
       <TweetList initialProducts={tweets} />
     </div>
   );

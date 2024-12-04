@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import db from "@/lib/db";
 import getSession from "@/lib/session";
 import { formatToTimeAgo } from "@/lib/utils";
+import Link from "next/link";
 
 async function getTweet(id: number) {
   const tweet = await db.tweet.findUnique({
@@ -54,6 +55,12 @@ export default async function TweetDetail({
           Delete product
         </button>
       ) : null}
+      <Link
+        href="/"
+        className="bg-orange-500 flex items-center justify-center rounded-md size-16   text-white transition-colors hover:bg-orange-400"
+      >
+        <span>Home</span>
+      </Link>
     </div>
   );
 }

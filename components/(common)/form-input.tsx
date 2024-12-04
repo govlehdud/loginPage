@@ -15,7 +15,6 @@ export default function FormInput({
   errors = [],
   ...props
 }: IFormInput & InputHTMLAttributes<HTMLInputElement>) {
-  console.log("props : ", props);
   const setIcon = () => {
     if (name === "email") return <IoIosMail />;
     if (name === "username") return <IoIosPerson />;
