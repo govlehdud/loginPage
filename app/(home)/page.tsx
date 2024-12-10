@@ -13,7 +13,8 @@ async function getTwitter() {
       updated_at: true,
       user: true,
       userId: true,
-      Like: true,
+      // likes: true,
+      // comments: true,
     },
     // pagenation을 위한 갯수제한
     take: 1,

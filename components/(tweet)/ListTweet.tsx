@@ -1,8 +1,6 @@
 import { Tweet, User } from "@prisma/client/index-browser";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { formatToTimeAgo } from "@/lib/utils";
-import { getMoreProducts } from "@/app/(home)/action";
 interface ITweet extends Tweet {
   tweet: string;
   id: number;
@@ -10,6 +8,7 @@ interface ITweet extends Tweet {
   updated_at: Date;
   userId: number;
   user: User;
+  view: number;
 }
 
 export default function ListTweet({
@@ -17,6 +16,7 @@ export default function ListTweet({
   id,
   created_at,
   user,
+  view,
   updated_at,
   userId,
 }: ITweet) {

@@ -7,20 +7,11 @@ interface ILoginForm {
   password?: string;
 }
 
-async function test() {
-  const token = await db.sMSToken.findUnique({
-    where: {
-      id: 1,
-    },
-    include: {
-      user: true,
-    },
-  });
-  console.log(token);
-}
-
 export async function createUser({ email, username, password }: ILoginForm) {
-  // 1. 유저 정보 저장
+  if (!email || !username || !password) {
+    throw new Error("필수 필드가 누락되었습니다");
+  }
+
   const data = {
     email,
     username,

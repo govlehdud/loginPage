@@ -43,7 +43,7 @@ export default function TweetList({ initialProducts }: TweetWithUser) {
         <h1>Sweet Home Twitter!!!</h1>
         <span>트위터 공간입니다!</span>
         {tweets.map((tweet) => (
-          <ListTweet key={tweet.id} {...tweet} />
+          <ListTweet key={tweet.id} {...tweet} view={0} />
         ))}
       </div>
       <div className="flex items-center justify-center gap-2">
