@@ -11,8 +11,8 @@ export default function TabBar() {
       <Link href="/" className="flex flex-col items-center gap-px">
         <span>홈</span>
       </Link>
-      <Link href="/life" className="flex flex-col items-center gap-px">
-        <span>동네생활</span>
+      <Link href="/search" className="flex flex-col items-center gap-px">
+        <span>검색</span>
       </Link>
       <Link href="/chat" className="flex flex-col items-center gap-px">
         <span>채팅</span>
