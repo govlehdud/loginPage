@@ -14,19 +14,20 @@ async function getUser() {
   notFound();
 }
 
+const logOut = async () => {
+  "use server";
+  const session = await getSession();
+  session.destroy();
+  redirect("/");
+};
+const homeBtn = async () => {
+  "use server";
+  redirect("/");
+};
+
 export default async function Profile() {
   const user = await getUser();
-  console.log("user : ", user);
-  const logOut = async () => {
-    "use server";
-    const session = await getSession();
-    session.destroy();
-    redirect("/");
-  };
-  const homeBtn = async () => {
-    "use server";
-    redirect("/");
-  };
+
   return (
     <div className="flex flex-col gap-10 py-8 px-6 items-center">
       <h1 className="text-2xl">welcome! {user?.username}</h1>
