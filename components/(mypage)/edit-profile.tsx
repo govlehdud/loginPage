@@ -9,6 +9,7 @@ import Link from "next/link";
 import { User } from "@prisma/client";
 
 export default function EditProfileForm({ user }: { user: User }) {
+  console.log("user : ", user);
   const [state, formAction] = useActionState(updateUserProfile, null);
   console.log(state);
   return (
@@ -26,6 +27,7 @@ export default function EditProfileForm({ user }: { user: User }) {
           errors={state?.fieldErrors?.email}
         />
         <MyTextArea
+          name="bio"
           bio={user.bio || undefined}
           errors={state?.fieldErrors?.bio}
         />
