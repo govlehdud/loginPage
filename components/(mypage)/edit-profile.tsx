@@ -9,9 +9,7 @@ import Link from "next/link";
 import { User } from "@prisma/client";
 
 export default function EditProfileForm({ user }: { user: User }) {
-  console.log("user : ", user);
   const [state, formAction] = useActionState(updateUserProfile, null);
-  console.log(state);
   return (
     <>
       <form action={formAction} className="flex flex-col gap-3">

@@ -51,7 +51,7 @@ export async function login(prevState: any, formData: FormData) {
     });
     const ok = await bcrypt.compare(
       result.data.password,
-      user!.password ?? "xxxx"
+      user?.password ?? "xxxx"
     );
     if (ok) {
       const session = await getSession();
@@ -60,9 +60,13 @@ export async function login(prevState: any, formData: FormData) {
       redirect("/");
     } else {
       return {
-        password: ["Wrong password."],
-        email: [],
-        username: [],
+        // 로그인 실패 시 표시할 메시지인데 각각에 값을 넣어줄 필요는 없는거같다.
+        // password: ["Wrong password."],
+        // email: ["is not email."],
+        // username: ["is not username."],
+        LOGIN_FAILED_TOKEN: {
+          info: ["입력하신 정보는 올바르지 않습니다."],
+        },
       };
     }
   }

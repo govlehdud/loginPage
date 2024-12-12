@@ -46,6 +46,10 @@ export default function Home() {
             prop="3"
           />
 
+          <span className="text-red-500">
+            {state?.LOGIN_FAILED_TOKEN?.info}
+          </span>
+
           <Button text="Log in" />
           {state?.LOGIN_TOKEN && (
             <div className="text-black font-medium p-3 pl-10 bg-green-500 rounded-lg flex relative">
