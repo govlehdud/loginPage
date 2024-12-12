@@ -31,7 +31,7 @@ export default async function Home() {
   const session = await getSession();
   const tweets = await getTwitter();
   return (
-    <div className="flex flex-col items-center justify-center gap-5 p-5 pt-52">
+    <div className="flex flex-col items-center justify-center gap-5  bg-slate-500 h-[919px] w-[800px]">
       <Link
         href="/tweet"
         className="bg-orange-500 flex items-center justify-center rounded-full size-16 fixed top-24 text-white transition-colors hover:bg-orange-400"
