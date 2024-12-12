@@ -24,11 +24,11 @@ export default function MyInput({
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 w-96 relative">
+    <div className="flex flex-col items-center gap-2 w-full relative">
       <span className="absolute left-2 text-xl m-1 mt-2.5">{setIcon()}</span>
       <input
         name={name}
-        className={`bg-white rounded-full w-[400px] h-10 ring-2 border-none focus:ring-4 pl-14 transition ${
+        className={`bg-white rounded-md w-full h-10 ring-2 border-none focus:ring-4 pl-14 transition ${
           errors.length
             ? "ring-red-500     focus:ring-red-500"
             : "ring-neutral-300 focus:ring-neutral-400 "
