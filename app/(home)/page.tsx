@@ -6,7 +6,6 @@ import TweetList from "@/components/(tweet)/tweet-list";
 import Link from "next/link";
 import MyPage from "@/components/(mypage)/mypage";
 import getSession from "@/lib/session";
-import { redirect } from "next/navigation";
 async function getTwitter() {
   const twitter = await db.tweet.findMany({
     select: {
@@ -24,12 +23,6 @@ async function getTwitter() {
   });
   return twitter;
 }
-const logOut = async () => {
-  "use server";
-  const session = await getSession();
-  session.destroy();
-  redirect("/");
-};
 
 // relation 떄문에 prisma.PromiseReturnType 사용
 export type InitialProducts = Prisma.PromiseReturnType<typeof getTwitter>;
@@ -47,11 +40,6 @@ export default async function Home() {
       </Link>
       <TweetList initialProducts={tweets} />
       <MyPage id={session.id!} />
-      <form action={logOut}>
-        <button className="bg-black text-white rounded-md p-2 hover:bg-gray-700 cursor-pointer">
-          Log out
-        </button>
-      </form>
     </div>
   );
 }
