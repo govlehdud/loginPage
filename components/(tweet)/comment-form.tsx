@@ -44,8 +44,6 @@ export default function CommentForm({ payload, tweetId, username }: IComment) {
   };
   // 댓글 추가 함수 호출
   const [state, action] = useActionState(handleUploadResponse, null);
-
-  console.log("state: ", state);
   return (
     <div className="w-full flex flex-col gap-3">
       <form action={action} className="flex w-full gap-2 ">

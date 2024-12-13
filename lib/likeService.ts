@@ -26,6 +26,17 @@ export const getLikeStatus = async (tweetId: number, userId: number) => {
   };
 };
 
+export const getNewTwitter = async () => {
+  const twitter = await db.tweet.count({
+    where: {
+      created_at: {
+        gt: new Date(Date.now() - 1000 * 60 * 60 * 24),
+      },
+    },
+  });
+  return twitter;
+};
+
 export const likeTweet = async (tweetId: number) => {
   const session = await getSession();
   try {

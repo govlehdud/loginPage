@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import React from "react";
+import React, { useOptimistic } from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import db from "@/lib/db";
 import TweetList from "@/components/(tweet)/tweet-list";
@@ -7,6 +7,8 @@ import Link from "next/link";
 import MyPage from "@/components/(mypage)/mypage";
 import getSession from "@/lib/session";
 import InsertForm from "@/components/(tweet)/insert-form";
+import { unstable_cache as NextCache } from "next/cache";
+import { getNewTwitter } from "@/lib/likeService";
 async function getTwitter() {
   const twitter = await db.tweet.findMany({
     select: {

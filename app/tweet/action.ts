@@ -1,6 +1,7 @@
 "use server";
 import db from "@/lib/db";
 import getSession from "@/lib/session";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -31,7 +32,9 @@ export async function createTweet(prevState: any, formData: FormData) {
           id: true,
         },
       });
-      redirect(`/tweet/${tweet.id}`);
+      // revalidateTag(`insert-tweet-${tweet.id}`);
+      // redirect(`/tweet/${tweet.id}`);
+      redirect("/");
     }
   }
 }

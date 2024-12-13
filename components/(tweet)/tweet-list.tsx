@@ -1,10 +1,8 @@
 "use client";
-import { Tweet, User } from "@prisma/client";
 import ListTweet from "./ListTweet";
 import { InitialProducts } from "@/app/(home)/page";
 import { useState } from "react";
 import { getMaxValue, getMoreProducts } from "@/app/(home)/action";
-import Link from "next/link";
 
 interface TweetWithUser {
   initialProducts: InitialProducts;

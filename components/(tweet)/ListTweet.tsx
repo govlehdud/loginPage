@@ -23,7 +23,7 @@ export default function ListTweet({
   return (
     <Link href={`/tweet/${id}`}>
       <div
-        className="border-2 border-neutral-200 rounded-lg p-6 h-[100px]"
+        className="border-2 border-neutral-200 rounded-lg p-6 h-[200px] flex flex-col justify-center items-center"
         key={id}
       >
         <span>
