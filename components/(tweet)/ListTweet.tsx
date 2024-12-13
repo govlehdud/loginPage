@@ -22,7 +22,10 @@ export default function ListTweet({
 }: ITweet) {
   return (
     <Link href={`/tweet/${id}`}>
-      <div className="border-2 border-neutral-200 rounded-lg p-3" key={id}>
+      <div
+        className="border-2 border-neutral-200 rounded-lg p-6 h-[100px]"
+        key={id}
+      >
         <span>
           {user.username} /{formatToTimeAgo(created_at.toString())}
         </span>

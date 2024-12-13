@@ -4,6 +4,7 @@ import ListTweet from "./ListTweet";
 import { InitialProducts } from "@/app/(home)/page";
 import { useState } from "react";
 import { getMaxValue, getMoreProducts } from "@/app/(home)/action";
+import Link from "next/link";
 
 interface TweetWithUser {
   initialProducts: InitialProducts;
@@ -39,30 +40,29 @@ export default function TweetList({ initialProducts }: TweetWithUser) {
   };
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-5">
-        <h1>Sweet Home Twitter!!!</h1>
-        <span>트위터 공간입니다!</span>
+      <div className="flex flex-col gap-5 w-[600px]">
         {tweets.map((tweet) => (
           <ListTweet key={tweet.id} {...tweet} view={0} />
         ))}
       </div>
-      <div className="flex items-center justify-center gap-2">
+
+      <div className="flex px-52">
         <button
           onClick={preBtn}
           disabled={isLoading}
-          className="text-sm font-semibold bg-orange-500 w-fit mx-auto px-3 py-2 rounded-md hover:opacity-90 active:scale-95"
+          className="text-sm font-semibold bg-orange-500 w-fit h-10 mx-auto px-3 py-2 rounded-md hover:opacity-90 active:scale-95"
         >
-          {isLoading ? "로딩중..." : "이전"}
+          {isLoading ? "로딩" : "이전"}
         </button>
-        <span className="border-2 border-orange-500 rounded-md px-2">
+        <span className="border-2 border-orange-500 rounded-md px-2 my-auto py-1">
           {page + 1}
         </span>
         <button
           onClick={nextBtn}
           disabled={isLoading}
-          className="text-sm font-semibold bg-orange-500 w-fit mx-auto px-3 py-2 rounded-md hover:opacity-90 active:scale-95"
+          className="text-sm font-semibold bg-orange-500 w-fit h-10 mx-auto px-3 py-2 rounded-md hover:opacity-90 active:scale-95"
         >
-          {isLoading ? "로딩중..." : "다음"}
+          {isLoading ? "로딩" : "다음"}
         </button>
       </div>
     </div>

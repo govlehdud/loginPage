@@ -6,6 +6,7 @@ import TweetList from "@/components/(tweet)/tweet-list";
 import Link from "next/link";
 import MyPage from "@/components/(mypage)/mypage";
 import getSession from "@/lib/session";
+import InsertForm from "@/components/(tweet)/insert-form";
 async function getTwitter() {
   const twitter = await db.tweet.findMany({
     select: {
@@ -32,14 +33,25 @@ export default async function Home() {
   const tweets = await getTwitter();
   return (
     <div className="flex flex-col items-center justify-center gap-5  bg-slate-500 h-[919px] w-[800px]">
-      <Link
-        href="/tweet"
-        className="bg-orange-500 flex items-center justify-center rounded-full size-16 fixed top-24 text-white transition-colors hover:bg-orange-400"
-      >
-        <PlusIcon className="size-10" />
-      </Link>
+      <h1>오... 완전 명언같았어!</h1>
+      <div className="flex items-center justify-center gap-2">
+        <Link
+          href="/search"
+          className="flex flex-col items-center justify-center gap-px bg-red-500 w-28 rounded-lg hover:opacity-90 active:scale-95"
+        >
+          <span>검색</span>
+        </Link>
+        <MyPage id={session.id!} />
+        <Link
+          href="/tweet"
+          className="flex flex-col items-center justify-center gap-px bg-red-500 w-28 rounded-lg hover:opacity-90 active:scale-95"
+        >
+          {/* <PlusIcon className="size-10" /> */}
+          <span>추가</span>
+        </Link>
+      </div>
+      <InsertForm />
       <TweetList initialProducts={tweets} />
-      <MyPage id={session.id!} />
     </div>
   );
 }
