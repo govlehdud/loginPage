@@ -1,7 +1,6 @@
 "use server";
 import db from "@/lib/db";
 import getSession from "@/lib/session";
-import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -19,7 +18,7 @@ export async function createTweet(prevState: any, formData: FormData) {
   } else {
     const session = await getSession();
     if (session.id) {
-      const tweet = await db.tweet.create({
+      await db.tweet.create({
         data: {
           tweet: result.data.tweet,
           user: {
