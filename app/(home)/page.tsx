@@ -34,26 +34,22 @@ export default async function Home() {
   const session = await getSession();
   const tweets = await getTwitter();
   return (
-    <div className="flex flex-col items-center justify-center gap-5  bg-slate-500 h-[919px] w-[800px]">
-      <h1>오... 완전 명언같았어!</h1>
-      <div className="flex items-center justify-center gap-2">
+    <div className="flex flex-col items-center justify-center gap-5  bg-slate-500 h-screen w-full">
+      <div className="flex justify-between w-full px-5">
+        {/* 검색 버튼 */}
         <Link
           href="/search"
-          className="flex flex-col items-center justify-center gap-px bg-red-500 w-28 rounded-lg hover:opacity-90 active:scale-95"
+          className="flex flex-col items-center justify-center gap-px bg-red-500 w-20 rounded-lg hover:opacity-90 active:scale-95"
         >
-          <span>검색</span>
+          <span>Search</span>
         </Link>
+        {/* 마이페이지 버튼 */}
         <MyPage id={session.id!} />
-        <Link
-          href="/tweet"
-          className="flex flex-col items-center justify-center gap-px bg-red-500 w-28 rounded-lg hover:opacity-90 active:scale-95"
-        >
-          {/* <PlusIcon className="size-10" /> */}
-          <span>추가</span>
-        </Link>
       </div>
-      <InsertForm />
+      {/* 트윗 리스트 */}
       <TweetList initialProducts={tweets} />
+      {/* 트윗 추가 버튼 */}
+      <InsertForm />
     </div>
   );
 }

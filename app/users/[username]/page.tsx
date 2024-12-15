@@ -37,16 +37,21 @@ export default async function UserPage({
   const tweet = await getTweet(Number(params.username));
   const user = await getUser(Number(params.username));
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-2">
-      <h1 className="text-2xl font-bold">마이페이지</h1>
-      <span>나의 이름 : {user?.username}</span>
-      <span>나의 이메일 : {user?.email}</span>
-      <span>나의 소개 : {user?.bio}</span>
+    <div className="flex flex-col items-center justify-center h-screen gap-2 bg-gray-500 p-4">
+      <h1 className="text-3xl font-bold">마이페이지</h1>
+      <div className="flex flex-col gap-2 p-2 w-full pt-20">
+        <span>이름 : {user?.username}</span>
+        <span>이메일 : {user?.email}</span>
+        <span>소개 : {user?.bio}</span>
+      </div>
 
-      <div className="flex flex-col gap-2 border-2 border-black p-2">
+      <div className="flex flex-col gap-2 p-3 w-full">
         <span className="text-xl font-bold">나의 트윗</span>
         {tweet.map((item) => (
-          <span className="border-2 border-black p-2" key={item.id}>
+          <span
+            className="border-2 border-gray-400 p-2 rounded-md w-full"
+            key={item.id}
+          >
             {item.tweet}
           </span>
         ))}

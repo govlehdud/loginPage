@@ -13,7 +13,6 @@ export default function TweetList({ initialProducts }: TweetWithUser) {
   const [isLoading, setIsLoading] = useState(false);
   const [maxValue, setMaxValue] = useState(0);
   const [page, setPage] = useState(0);
-  //   setMaxValue(await getMaxValue());
   const nextBtn = async () => {
     setMaxValue(await getMaxValue());
     if (maxValue > page + 1) {
@@ -38,27 +37,31 @@ export default function TweetList({ initialProducts }: TweetWithUser) {
   };
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-5 w-[600px]">
+      {/* 트윗 리스트 */}
+      <div className="flex flex-col gap-5 w-[600px] overflow-y-auto h-[500px]">
         {tweets.map((tweet) => (
           <ListTweet key={tweet.id} {...tweet} view={0} />
         ))}
       </div>
 
-      <div className="flex px-52">
+      {/* 페이지 버튼 */}
+      <div className="flex px-52 gap-2">
         <button
+          className="text-sm font-semibold bg-slate-500 w-fit h-10 mx-auto px-3 py-2 rounded-md 
+          hover:border-b-2 hover:border-orange-500 hover:opacity-90 active:scale-95"
           onClick={preBtn}
           disabled={isLoading}
-          className="text-sm font-semibold bg-orange-500 w-fit h-10 mx-auto px-3 py-2 rounded-md hover:opacity-90 active:scale-95"
         >
           {isLoading ? "로딩" : "이전"}
         </button>
-        <span className="border-2 border-orange-500 rounded-md px-2 my-auto py-1">
+        <span className="border-2 border-orange-500 rounded-md px-2 my-auto py-1 flex items-center justify-center text-sm">
           {page + 1}
         </span>
         <button
           onClick={nextBtn}
           disabled={isLoading}
-          className="text-sm font-semibold bg-orange-500 w-fit h-10 mx-auto px-3 py-2 rounded-md hover:opacity-90 active:scale-95"
+          className="text-sm font-semibold bg-slate-500 w-fit h-10 mx-auto px-3 py-2 rounded-md 
+          hover:border-b-2 hover:border-orange-500 hover:opacity-90 active:scale-95"
         >
           {isLoading ? "로딩" : "다음"}
         </button>

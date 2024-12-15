@@ -12,10 +12,15 @@ export default function MyTextArea({
   errors = [],
 }: IFormInput & InputHTMLAttributes<HTMLInputElement>) {
   return (
-    <div className="flex flex-col items-center gap-2 w-full h-20">
+    <div className="flex flex-col items-center gap-2 w-full h-20 justify-center">
+      <label htmlFor={name} className="sr-only">
+        {name}
+      </label>
       <textarea
+        id={name}
         name={name}
-        className="bg-white rounded-md w-full h-30 ring-2 border-none focus:ring-4 pl-14 transition"
+        placeholder={`Enter your ${name}`}
+        className="bg-gray-400 text-black resize-none overflow-hidden  rounded-md w-full h-30 ring-2 border-none focus:ring-4 pl-14 transition"
         defaultValue={bio}
       />
       {errors.map((error, index) => (

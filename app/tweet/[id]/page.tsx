@@ -1,13 +1,14 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import db from "@/lib/db";
 import getSession from "@/lib/session";
 import { formatToTimeAgo } from "@/lib/utils";
 import Link from "next/link";
 import LikeButton from "@/components/(tweet)/like-button";
-import { likeTweet, dislikeTweet, getLikeStatus } from "@/lib/likeService";
+import { getLikeStatus } from "@/lib/likeService";
 import { unstable_cache as NextCache } from "next/cache";
 import CommentForm from "@/components/(tweet)/comment-form";
 import { getComment } from "@/lib/commentService";
+import DeleteButton from "@/components/(tweet)/delete-button";
 
 async function getTweet(id: number) {
   const tweet = await db.tweet.findUnique({
@@ -42,6 +43,15 @@ async function getIsOwner(userId: number) {
   return false;
 }
 
+async function deleteBtn() {
+  //   await db.tweet.delete({
+  //     where: {
+  //       id,
+  //     },
+  //   });
+  //   redirect("/");
+}
+
 export default async function TweetDetail({
   params,
 }: {
@@ -57,30 +67,28 @@ export default async function TweetDetail({
   const comments = await getComment(id);
   const { isLiked, likeCount } = await getCachedLikeStatus(id);
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-2">
-      <h1 className="text-2xl font-bold">TweetDetail</h1>
-      <span>{params.id} 페이지입니다</span>
-      <br />
-      <span>Title : {tweet?.tweet}</span>
-      <span>작성자 : {tweet?.user?.username}</span>
-      <Link
-        href="/"
-        className="bg-orange-500 flex items-center justify-center rounded-md size-16   text-white transition-colors hover:bg-orange-400"
-      >
-        <span>Home</span>
-      </Link>
-      <span>{formatToTimeAgo(tweet?.created_at.toString()!)}</span>
+    <div className="flex flex-col items-center justify-center h-screen gap-3 bg-gray-500 p-4">
+      <h1 className="text-4xl font-bold">{tweet?.tweet}</h1>
       <LikeButton tweetId={tweet!.id} isLiked={isLiked} likeCount={likeCount} />
+
+      <div className="flex w-full justify-between">
+        <Link
+          href="/"
+          className="bg-blue-950 flex items-center justify-center rounded-md size-16   text-white transition-colors hover:bg-blue-400"
+        >
+          <span>Home</span>
+        </Link>
+        {isOwner ? <DeleteButton id={tweet!.id} /> : null}
+      </div>
+      <div className="flex gap-2 w-full justify-between">
+        <span>작성자 : {tweet?.user?.username}</span>
+        <span>{formatToTimeAgo(tweet?.created_at.toString()!)}</span>
+      </div>
       <CommentForm
         payload={comments}
         tweetId={tweet!.id}
         username={tweet!.user.username}
       />
-      {isOwner ? (
-        <button className="bg-red-500 px-5 py-2.5 rounded-md text-white font-semibold hover:opacity-90 active:scale-95">
-          Delete product
-        </button>
-      ) : null}
     </div>
   );
 }

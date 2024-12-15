@@ -12,7 +12,7 @@ export default function EditProfileForm({ user }: { user: User }) {
   const [state, formAction] = useActionState(updateUserProfile, null);
   return (
     <>
-      <form action={formAction} className="flex flex-col gap-3">
+      <form action={formAction} className="flex flex-col gap-3 w-full">
         <input type="hidden" name="id" value={user.id} />
         <MyInput
           name="username"
@@ -31,7 +31,7 @@ export default function EditProfileForm({ user }: { user: User }) {
         />
         <Button text="Submit" />
       </form>
-      <div className="flex gap-2 justify-center">
+      <div className="flex gap-2 justify-center mt-10 w-full">
         <Link
           href="/"
           className="bg-orange-500 hover:bg-orange-400 text-white flex items-center justify-center rounded-2xl w-full h-20 transition-colors"

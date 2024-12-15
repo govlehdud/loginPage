@@ -22,13 +22,13 @@ const CommentList = ({
       <div className="relative flex">
         <label
           htmlFor={name}
-          className="absolute top-1/2 left-4 -translate-y-1/2 text-stone-600 *:size-5"
+          className="absolute top-1/2 left-4 -translate-y-1/2 text-white *:size-5"
         >
           {labelIcon}
         </label>
         <input
           id={name}
-          className={`w-full h-12 pl-11 rounded-3xl bg-transparent text-stone-600 border placeholder:text-stone-400 focus:outline-none focus:ring focus:ring-offset-2 transition `}
+          className={`w-full h-12 pl-11 border-stone-300 rounded-3xl bg-transparent text-white border placeholder:text-stone-400 focus:outline-none focus:ring focus:ring-offset-2 transition `}
           name={name}
           placeholder={placeholder}
           disabled={pending}

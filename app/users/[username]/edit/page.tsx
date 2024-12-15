@@ -17,8 +17,8 @@ export default async function EditTweet({
   }
 
   return (
-    <div className="flex flex-col gap-3">
-      <h1>Edit Page입니다!</h1>
+    <div className="flex flex-col gap-3 bg-gray-500 p-10 h-screen justify-center items-center">
+      <h1 className="text-red-100 text-2xl font-bold">Edit Page</h1>
       <EditProfileForm user={user} />
     </div>
   );

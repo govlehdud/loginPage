@@ -13,7 +13,6 @@ interface IComment {
 }
 
 export default function CommentForm({ payload, tweetId, username }: IComment) {
-  console.log("payload: ", payload);
   // 최적화 상태 관리
   const [responses, optimisticResponse] = useOptimistic(
     payload,
@@ -30,7 +29,6 @@ export default function CommentForm({ payload, tweetId, username }: IComment) {
       ];
     }
   );
-  console.log("responses: ", responses);
 
   // 댓글 추가 함수
   const handleUploadResponse = (_: unknown, formData: FormData) => {
@@ -61,7 +59,7 @@ export default function CommentForm({ payload, tweetId, username }: IComment) {
           name="tweetId"
           value={tweetId}
         />
-        <button className="ml-auto min-w-14 bg-stone-300 rounded-xl p-3">
+        <button className="ml-auto min-w-14 bg-stone-600 rounded-xl p-3">
           추가
         </button>
       </form>

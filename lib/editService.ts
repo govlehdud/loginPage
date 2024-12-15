@@ -46,3 +46,11 @@ export async function updateUserProfile(prevState: any, formData: any) {
     redirect(`/users/${data.id}`);
   }
 }
+
+export async function deleteAction(prevState: any, formData: any) {
+  const id = Number(formData.get("id"));
+  await db.tweet.delete({
+    where: { id },
+  });
+  redirect("/");
+}
