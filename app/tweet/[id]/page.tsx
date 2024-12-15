@@ -43,13 +43,14 @@ async function getIsOwner(userId: number) {
 }
 
 type PageProps = {
-  params: Promise<{
-    id: string;
-  }>;
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export default async function TweetDetail({ params }: PageProps) {
-  const id = Number((await params).id);
+export default async function TweetDetail({ params, searchParams }: PageProps) {
+  console.log(params);
+  console.log(searchParams);
+  const id = Number(params.id);
   if (isNaN(id)) {
     return notFound();
   }
