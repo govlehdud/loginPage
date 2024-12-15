@@ -42,11 +42,13 @@ async function getIsOwner(userId: number) {
   return false;
 }
 
-export default async function TweetDetail({
-  params,
-}: {
-  params: { id: string };
-}) {
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function TweetDetail({ params }: PageProps) {
   const id = Number(params.id);
   if (isNaN(id)) {
     return notFound();
