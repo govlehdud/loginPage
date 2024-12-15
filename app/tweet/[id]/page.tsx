@@ -42,12 +42,15 @@ async function getIsOwner(userId: number) {
   return false;
 }
 
+// b문제
 type PageProps = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export default async function TweetDetail({ params, searchParams }: PageProps) {
+export default async function TweetDetail(props: PageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   console.log(params);
   console.log(searchParams);
   const id = Number(params.id);

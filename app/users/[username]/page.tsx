@@ -28,11 +28,11 @@ const logOut = async () => {
   redirect("/");
 };
 
-export default async function UserPage({
-  params,
-}: {
-  params: { username: string };
+// a문제
+export default async function UserPage(props: {
+  params: Promise<{ username: string }>;
 }) {
+  const params = await props.params;
   // 작성한 tweet이 없을경우를 대비해 user를 가져온다.
   const tweet = await getTweet(Number(params.username));
   const user = await getUser(Number(params.username));
