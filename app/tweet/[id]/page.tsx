@@ -75,7 +75,7 @@ export default async function TweetDetail({
       </div>
       <div className="flex gap-2 w-full justify-between">
         <span>작성자 : {tweet?.user?.username}</span>
-        <span>{formatToTimeAgo(tweet?.created_at.toString())}</span>
+        <span>{formatToTimeAgo(tweet?.created_at?.toString()!)}</span>
       </div>
       <CommentForm
         payload={JSON.stringify(comments)}
