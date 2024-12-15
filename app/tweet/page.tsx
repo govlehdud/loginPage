@@ -15,6 +15,7 @@ export default function Tweet() {
           required
           placeholder="글을 남겨주세요"
           type="text"
+          errors={state?.fieldErrors?.tweet}
         />
 
         <Button text="작성완료" />

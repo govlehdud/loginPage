@@ -4,6 +4,7 @@ import { deleteAction } from "@/lib/editService";
 
 export default function DeleteButton({ id }: { id: number }) {
   const [state, formAction] = useActionState(deleteAction, null);
+  console.log(state);
   return (
     <form action={formAction}>
       <input type="hidden" name="id" value={id} />

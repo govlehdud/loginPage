@@ -10,7 +10,14 @@ const tweetSchema = z.object({
   }),
 });
 
-export async function createTweet(prevState: any, formData: FormData) {
+export type ActionState =
+  | z.typeToFlattenedError<{
+      tweet: string;
+    }>
+  | null
+  | undefined;
+
+export async function createTweet(prevState: ActionState, formData: FormData) {
   const data = formData.get("tweet");
   const result = tweetSchema.safeParse({ tweet: data });
   if (!result.success) {
@@ -31,8 +38,7 @@ export async function createTweet(prevState: any, formData: FormData) {
           id: true,
         },
       });
-      // revalidateTag(`insert-tweet-${tweet.id}`);
-      // redirect(`/tweet/${tweet.id}`);
+
       redirect("/");
     }
   }

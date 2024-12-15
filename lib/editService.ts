@@ -1,6 +1,6 @@
 "use server";
 import { redirect } from "next/navigation";
-import db, { createUser } from "./db";
+import db from "./db";
 import { z } from "zod";
 
 export const getUserData = async (id: number) => {
@@ -12,8 +12,23 @@ export const getUserData = async (id: number) => {
   return user;
 };
 
-async function updateUser(data: any) {
-  const updateUser = await db.user.update({
+interface IUpdateForm {
+  id: number;
+  username: string;
+  email: string;
+  bio: string;
+}
+
+export type UpdateUserProfileState = {
+  fieldErrors?: {
+    username?: string[];
+    email?: string[];
+    bio?: string[];
+  } | null;
+} | null;
+
+async function updateUser(data: IUpdateForm) {
+  await db.user.update({
     where: { id: Number(data.id) },
     data: data,
   });
@@ -28,12 +43,15 @@ const UserSchema = z.object({
   bio: z.string().optional(),
 });
 
-export async function updateUserProfile(prevState: any, formData: any) {
+export async function updateUserProfile(
+  prevState: UpdateUserProfileState,
+  formData: FormData
+) {
   const data = {
     id: Number(formData.get("id")),
-    username: formData.get("username"),
-    email: formData.get("email"),
-    bio: formData.get("bio") || undefined,
+    username: String(formData.get("username")),
+    email: String(formData.get("email")),
+    bio: String(formData.get("bio") || ""),
   };
   const result = UserSchema.safeParse(data);
 
@@ -47,7 +65,16 @@ export async function updateUserProfile(prevState: any, formData: any) {
   }
 }
 
-export async function deleteAction(prevState: any, formData: any) {
+export type DeleteActionState = {
+  fieldErrors?: {
+    username?: string[];
+  } | null;
+} | null | void;
+
+export async function deleteAction(
+  prevState: DeleteActionState,
+  formData: FormData
+) {
   const id = Number(formData.get("id"));
   await db.tweet.delete({
     where: { id },

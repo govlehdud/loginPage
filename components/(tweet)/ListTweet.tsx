@@ -5,21 +5,10 @@ interface ITweet extends Tweet {
   tweet: string;
   id: number;
   created_at: Date;
-  updated_at: Date;
-  userId: number;
   user: User;
-  view: number;
 }
 
-export default function ListTweet({
-  tweet,
-  id,
-  created_at,
-  user,
-  view,
-  updated_at,
-  userId,
-}: ITweet) {
+export default function ListTweet({ tweet, id, created_at, user }: ITweet) {
   return (
     <Link href={`/tweet/${id}`}>
       <div

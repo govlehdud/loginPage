@@ -7,11 +7,10 @@ import { useActionState } from "react";
 import { login } from "@/app/(auth)/login/action";
 import { HiFire } from "react-icons/hi";
 import { FaCheckCircle } from "react-icons/fa";
-import { PASSWORD_MIN_LENGTH, USERNAME_MIN_LENGTH } from "@/lib/constants";
+import { PASSWORD_MIN_LENGTH } from "@/lib/constants";
 
 export default function Home() {
   const [state, dispatch] = useActionState(login, null);
-  console.log("state : ", state);
   return (
     <div className="flex flex-col gap-10 py-8 px-6 items-center">
       <div>
@@ -28,14 +27,14 @@ export default function Home() {
             required
             errors={state?.fieldErrors?.fieldErrors?.email}
           />
-          <FormInput
+          {/* <FormInput
             name="username"
             type="text"
             placeholder="Username"
             required
             minLength={USERNAME_MIN_LENGTH}
             errors={state?.fieldErrors?.fieldErrors?.username}
-          />
+          /> */}
           <FormInput
             name="password"
             type="password"
@@ -43,7 +42,6 @@ export default function Home() {
             errors={state?.fieldErrors?.fieldErrors?.password}
             required
             minLength={PASSWORD_MIN_LENGTH}
-            prop="3"
           />
 
           <span className="text-red-500">

@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import db from "@/lib/db";
 import getSession from "@/lib/session";
 import { formatToTimeAgo } from "@/lib/utils";
@@ -43,15 +43,6 @@ async function getIsOwner(userId: number) {
   return false;
 }
 
-async function deleteBtn() {
-  //   await db.tweet.delete({
-  //     where: {
-  //       id,
-  //     },
-  //   });
-  //   redirect("/");
-}
-
 export default async function TweetDetail({
   params,
 }: {
@@ -63,6 +54,9 @@ export default async function TweetDetail({
   }
 
   const tweet = await getTweet(id);
+  if (!tweet) {
+    return notFound();
+  }
   const isOwner = await getIsOwner(tweet!.userId);
   const comments = await getComment(id);
   const { isLiked, likeCount } = await getCachedLikeStatus(id);
@@ -85,7 +79,7 @@ export default async function TweetDetail({
         <span>{formatToTimeAgo(tweet?.created_at.toString()!)}</span>
       </div>
       <CommentForm
-        payload={comments}
+        payload={JSON.stringify(comments)}
         tweetId={tweet!.id}
         username={tweet!.user.username}
       />

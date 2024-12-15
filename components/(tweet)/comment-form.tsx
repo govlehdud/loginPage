@@ -7,16 +7,29 @@ import { addTweetResponse } from "@/lib/commentService";
 import { responseSchema } from "@/lib/scehma";
 
 interface IComment {
-  payload: any;
+  payload: string;
   tweetId: number;
   username: string;
 }
 
+interface IUser {
+  username: string;
+  id: number;
+}
+
+interface IResponse {
+  id: number;
+  text: string;
+  created_at: Date;
+  tweetId: number;
+  user: IUser;
+}
+
 export default function CommentForm({ payload, tweetId, username }: IComment) {
   // 최적화 상태 관리
-  const [responses, optimisticResponse] = useOptimistic(
-    payload,
-    (previousResponses, responseOptimisticValue: string) => {
+  const [responses, optimisticResponse] = useOptimistic<IResponse[], string>(
+    JSON.parse(payload) as IResponse[],
+    (previousResponses, responseOptimisticValue) => {
       return [
         ...previousResponses,
         {
@@ -64,11 +77,11 @@ export default function CommentForm({ payload, tweetId, username }: IComment) {
         </button>
       </form>
 
-      {responses.map((response: any) => (
+      {responses.map((response: IResponse) => (
         <div key={response.id} className="*:text-md flex items-center my-3">
           <span className="font-semibold w-3/12">{response.user.username}</span>
           <span>
-            {">> "} {response.payload}
+            {">> "} {response.text}
           </span>
         </div>
       ))}

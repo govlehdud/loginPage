@@ -1,16 +1,25 @@
 "use client";
 
 import CommentList from "@/components/(tweet)/comment-list";
-import db from "@/lib/db";
 import { responseSchema } from "@/lib/scehma";
 import { getSearchResponse } from "@/lib/searchService";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { useActionState, useOptimistic } from "react";
+import { useActionState } from "react";
+
+interface ISearchResponse {
+  id: number;
+  tweet: string;
+  created_at: Date;
+  user: { username: string };
+}
 
 export default function SearchPage() {
-  const searchResponse = async (prevState: any, formData: FormData) => {
+  const searchResponse = async (
+    prevState: ISearchResponse[],
+    formData: FormData
+  ) => {
     const result = responseSchema.safeParse(formData.get("search"));
 
     if (result.success) {

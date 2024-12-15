@@ -6,11 +6,9 @@ import { InputHTMLAttributes } from "react";
 interface IFormInput {
   name: string;
   errors?: string[];
-  prop?: string;
 }
 
 export default function FormInput({
-  prop,
   name,
   errors = [],
   ...props
@@ -26,7 +24,7 @@ export default function FormInput({
       <span className="absolute left-2 text-xl m-1 mt-2.5">{setIcon()}</span>
       <input
         name={name}
-        className={`bg-white rounded-full w-[400px] h-10 ring-2 border-none focus:ring-4 pl-14 transition ${
+        className={`bg-white rounded-full w-[400px] h-10 ring-2 border-none focus:ring-4 pl-14 transition text-black ${
           errors.length
             ? "ring-red-500     focus:ring-red-500"
             : "ring-neutral-300 focus:ring-neutral-400 "

@@ -6,6 +6,7 @@ import SmallBtn from "./small-btn";
 
 export default function InsertForm() {
   const [state, action] = useActionState(createTweet, null);
+  console.log(state);
   return (
     <div>
       <form action={action} className="w-full max-w-xl flex gap-6 text-black">
