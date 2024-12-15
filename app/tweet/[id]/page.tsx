@@ -63,8 +63,7 @@ export default async function TweetDetail({
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-3 bg-gray-500 p-4">
       <h1 className="text-4xl font-bold">{tweet?.tweet}</h1>
-      <LikeButton tweetId={tweet!.id} isLiked={isLiked} likeCount={likeCount} />
-
+      <LikeButton tweetId={tweet?.id} isLiked={isLiked} likeCount={likeCount} />
       <div className="flex w-full justify-between">
         <Link
           href="/"
