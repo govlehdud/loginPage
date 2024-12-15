@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import db from "@/lib/db";
 import getSession from "@/lib/session";
-import { formatToTimeAgo } from "@/lib/utils";
 import Link from "next/link";
 import LikeButton from "@/components/(tweet)/like-button";
 import { getLikeStatus } from "@/lib/likeService";
@@ -75,7 +74,6 @@ export default async function TweetDetail({
       </div>
       <div className="flex gap-2 w-full justify-between">
         <span>작성자 : {tweet?.user?.username}</span>
-        {/* <span>{formatToTimeAgo(tweet?.created_at?.toString()!)}</span> */}
       </div>
       <CommentForm
         payload={JSON.stringify(comments)}
