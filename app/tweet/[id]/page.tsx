@@ -57,7 +57,7 @@ export default async function TweetDetail({
   if (!tweet) {
     return notFound();
   }
-  const isOwner = await getIsOwner(tweet!.userId);
+  const isOwner = await getIsOwner(tweet.userId);
   const comments = await getComment(id);
   const { isLiked, likeCount } = await getCachedLikeStatus(id);
   return (
@@ -71,7 +71,7 @@ export default async function TweetDetail({
         >
           <span>Home</span>
         </Link>
-        {isOwner ? <DeleteButton id={tweet!.id} /> : null}
+        {isOwner ? <DeleteButton id={tweet?.id} /> : null}
       </div>
       <div className="flex gap-2 w-full justify-between">
         <span>작성자 : {tweet?.user?.username}</span>
@@ -79,8 +79,8 @@ export default async function TweetDetail({
       </div>
       <CommentForm
         payload={JSON.stringify(comments)}
-        tweetId={tweet!.id}
-        username={tweet!.user.username}
+        tweetId={tweet?.id}
+        username={tweet?.user?.username}
       />
     </div>
   );
