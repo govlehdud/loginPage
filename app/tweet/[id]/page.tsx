@@ -43,16 +43,10 @@ async function getIsOwner(userId: number) {
 }
 
 // b문제
-type PageProps = {
+export default async function TweetDetail(props: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-};
-
-export default async function TweetDetail(props: PageProps) {
-  const searchParams = await props.searchParams;
+}) {
   const params = await props.params;
-  console.log(params);
-  console.log(searchParams);
   const id = Number(params.id);
   if (isNaN(id)) {
     return notFound();
