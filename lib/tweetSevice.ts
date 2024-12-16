@@ -28,7 +28,7 @@ export const getTweets = async () => {
       user: true,
       userId: true,
     },
-    take: 1,
+    take: 4,
     orderBy: {
       created_at: "desc",
     },

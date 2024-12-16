@@ -13,8 +13,8 @@ export async function getMoreProducts(page: number) {
       likes: true,
       comments: true,
     },
-    skip: page * 1,
-    take: 1,
+    skip: page * 4,
+    take: 4,
     orderBy: {
       created_at: "desc",
     },

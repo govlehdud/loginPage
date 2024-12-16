@@ -12,7 +12,7 @@ export default function ListTweet({ tweet, id, created_at, user }: ITweet) {
   return (
     <Link href={`/tweet/${id}`}>
       <div
-        className="border-2 border-neutral-200 rounded-lg p-6 h-[500px] flex flex-col justify-center items-center"
+        className="border-2 border-neutral-200 rounded-lg p-6 w-[400px] h-[100px] flex flex-col justify-center items-center"
         key={id}
       >
         <div className="p-3 flex flex-col gap-2 text-sm">
