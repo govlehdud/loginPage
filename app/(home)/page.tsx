@@ -1,52 +1,39 @@
 import { Prisma } from "@prisma/client";
 import React from "react";
-import db from "@/lib/db";
 import TweetList from "@/components/(tweet)/tweet-list";
 import Link from "next/link";
 import MyPage from "@/components/(mypage)/mypage";
 import getSession from "@/lib/session";
 import InsertForm from "@/components/(tweet)/insert-form";
-async function getTwitter() {
-  const twitter = await db.tweet.findMany({
-    select: {
-      id: true,
-      tweet: true,
-      created_at: true,
-      updated_at: true,
-      user: true,
-      userId: true,
-    },
-    take: 1,
-    orderBy: {
-      created_at: "desc",
-    },
-  });
-  return twitter;
-}
+import { getTweets } from "@/lib/tweetSevice";
 
 // relation 떄문에 prisma.PromiseReturnType 사용
-export type InitialProducts = Prisma.PromiseReturnType<typeof getTwitter>;
+export type InitialProducts = Prisma.PromiseReturnType<typeof getTweets>;
 
 export default async function Home() {
   const session = await getSession();
-  const tweets = await getTwitter();
+  const tweets = await getTweets();
   return (
-    <div className="flex flex-col items-center justify-center gap-5  bg-slate-500 h-screen w-full">
-      <div className="flex justify-between w-full px-5">
-        {/* 검색 버튼 */}
+    <div className="flex flex-col items-center justify-center gap-5  bg-slate-500 h-[919px] w-[800px]">
+      <h1>오... 완전 명언같았어!</h1>
+      <div className="flex items-center justify-center gap-2">
         <Link
           href="/search"
-          className="flex flex-col items-center justify-center gap-px bg-red-500 w-20 rounded-lg hover:opacity-90 active:scale-95"
+          className="flex flex-col items-center justify-center gap-px bg-red-500 w-28 rounded-lg hover:opacity-90 active:scale-95"
         >
-          <span>Search</span>
+          <span>검색</span>
         </Link>
-        {/* 마이페이지 버튼 */}
         <MyPage id={session.id!} />
+        <Link
+          href="/tweet"
+          className="flex flex-col items-center justify-center gap-px bg-red-500 w-28 rounded-lg hover:opacity-90 active:scale-95"
+        >
+          {/* <PlusIcon className="size-10" /> */}
+          <span>추가</span>
+        </Link>
       </div>
-      {/* 트윗 리스트 */}
-      <TweetList initialProducts={tweets} />
-      {/* 트윗 추가 버튼 */}
       <InsertForm />
+      <TweetList initialProducts={tweets} />
     </div>
   );
 }

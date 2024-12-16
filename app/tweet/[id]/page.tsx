@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import db from "@/lib/db";
 import getSession from "@/lib/session";
 import Link from "next/link";
 import LikeButton from "@/components/(tweet)/like-button";
@@ -8,23 +7,7 @@ import { unstable_cache as NextCache } from "next/cache";
 import CommentForm from "@/components/(tweet)/comment-form";
 import { getComment } from "@/lib/commentService";
 import DeleteButton from "@/components/(tweet)/delete-button";
-
-async function getTweet(id: number) {
-  const tweet = await db.tweet.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      user: {
-        select: {
-          username: true,
-          id: true,
-        },
-      },
-    },
-  });
-  return tweet;
-}
+import { getTweet } from "@/lib/tweetSevice";
 
 async function getCachedLikeStatus(tweetId: number) {
   const session = await getSession();
