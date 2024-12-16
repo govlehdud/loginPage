@@ -1,5 +1,4 @@
 "use client";
-import Input from "@/components/(common)/form-input";
 import { useActionState } from "react";
 import { createTweet } from "@/app/tweet/action";
 import SmallBtn from "./small-btn";
