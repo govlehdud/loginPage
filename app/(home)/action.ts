@@ -25,5 +25,5 @@ export async function getMoreProducts(page: number) {
 // 최대 페이지수
 export async function getMaxValue() {
   const maxValue = await db.tweet.count();
-  return maxValue;
+  return Math.ceil(maxValue / 4);
 }

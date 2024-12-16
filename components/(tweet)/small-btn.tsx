@@ -11,7 +11,7 @@ export default function SmallBtn({ text }: IButton) {
     <>
       <button
         disabled={pending}
-        className="w-[80px] text-white bg-gray-500 rounded-md h-10  transition placeholder:text-neutral-400  active:scale-95"
+        className="w-[60px] h-[30px] text-white bg-gray-500 rounded-md   transition border-2 border-black placeholder:text-neutral-400  active:scale-95"
       >
         {pending ? "로딩 중!!" : text}
       </button>

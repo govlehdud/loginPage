@@ -18,8 +18,6 @@ export default function TweetList({ initialProducts }: TweetWithUser) {
     if (maxValue > page + 1) {
       setIsLoading(true);
       const newTweets = await getMoreProducts(page + 1);
-
-      console.log(newTweets);
       setPage((prev) => prev + 1);
       setTweets(newTweets);
       setIsLoading(false);
