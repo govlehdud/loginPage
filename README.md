@@ -1,16 +1,5 @@
 # Login Page!!
 
-_extentions_
-vscode-styled-components
-Tailwind CSS intelliSense
-SQLite Viewer
-Prisma
-Pretter - code formatter
-Material
-Korean Language Pack for Visual Studio Code
-GitHub Codespaces
-Dracula Theme Official
-
     * prisma 관련 명령어
     npx prisma migrate dev
     npx prisma studio
@@ -25,3 +14,14 @@ Dracula Theme Official
     <Form action={action} /> form 을 제출할떈 useActionState를 써야했는데 update폼떄는 db에서 값을 가져오기떄문에
     use client를 사용하지못해 useActionState를 쓰지못해서 막막했다.
     해결법 : form 부분을 컴포넌트로 따로 나누어서 사용해야했다
+
+    * My Extentions
+    vscode-styled-components
+    Tailwind CSS intelliSense
+    SQLite Viewer
+    Prisma
+    Pretter - code formatter
+    Material
+    Korean Language Pack for Visual Studio Code
+    GitHub Codespaces
+    Dracula Theme Official
