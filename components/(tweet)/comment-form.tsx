@@ -19,7 +19,7 @@ interface IUser {
 
 interface IResponse {
   id: number;
-  text: string;
+  payload: string;
   created_at: Date;
   tweetId: number;
   user: IUser;
@@ -34,7 +34,7 @@ export default function CommentForm({ payload, tweetId, username }: IComment) {
         ...previousResponses,
         {
           id: new Date().getDate(),
-          text: responseOptimisticValue,
+          payload: responseOptimisticValue,
           created_at: new Date(),
           tweetId,
           user: { username, id: Infinity },
@@ -81,7 +81,7 @@ export default function CommentForm({ payload, tweetId, username }: IComment) {
         <div key={response.id} className="*:text-md flex items-center my-3">
           <span className="font-semibold w-3/12">{response.user.username}</span>
           <span>
-            {">> "} {response.text}
+            {">> "} {response.payload}
           </span>
         </div>
       ))}
