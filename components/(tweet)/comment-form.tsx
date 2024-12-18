@@ -42,7 +42,7 @@ export default function CommentForm({ payload, tweetId, username }: IComment) {
       ];
     }
   );
-
+  console.log(responses);
   // 댓글 추가 함수
   const handleUploadResponse = (_: unknown, formData: FormData) => {
     const result = responseSchema.safeParse(formData.get("payload"));
