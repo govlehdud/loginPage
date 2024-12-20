@@ -1,7 +1,9 @@
 import db from "@/lib/db";
 import getSession from "@/lib/session";
+import { HomeIcon, PencilIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { RiLogoutCircleFill } from "react-icons/ri";
 
 async function getTweet(id: number) {
   const tweet = await db.tweet.findMany({
@@ -61,17 +63,17 @@ export default async function UserPage(props: {
           href="/"
           className="bg-orange-500 hover:bg-orange-400 text-white flex items-center justify-center rounded-md size-16 transition-colors"
         >
-          <span>Home</span>
+          <HomeIcon className="w-6 h-6" />
         </Link>
         <Link
           href={`/users/${params.username}/edit`}
           className="bg-green-300 hover:bg-green-400 text-black flex items-center justify-center rounded-md size-16 transition-colors"
         >
-          <span>Edit</span>
+          <PencilIcon className="w-6 h-6" />
         </Link>
         <form action={logOut}>
-          <button className="bg-black hover:bg-gray-700 text-white flex items-center justify-center rounded-md size-16 transition-colors">
-            Log out
+          <button className="bg-yellow-200 hover:bg-gray-700 text-white flex items-center justify-center rounded-md size-16 transition-colors">
+            <RiLogoutCircleFill className="w-6 h-6" />
           </button>
         </form>
       </div>
