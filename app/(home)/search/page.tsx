@@ -32,30 +32,31 @@ export default function SearchPage() {
 
   const [state, action] = useActionState(searchResponse, []);
   return (
-    <div className="flex flex-col items-center gap-5 p-5 pt-32 bg-gray-500 h-screen">
+    <div className="flex flex-col items-center gap-5 p-5 pt-32 bg-gray-500 h-screen ">
       <Link href="/">
-        <HomeIcon className="w-6 h-6" />
+        <HomeIcon className="w-6 h-6 first-line:transition-transform hover:scale-110" />
       </Link>
       <form action={action} className="flex w-full gap-2 ">
         <CommentList
-          labelIcon={<MagnifyingGlassIcon />}
+          labelIcon={
+            <button type="submit">
+              <MagnifyingGlassIcon className="w-6 h-6 transition-transform hover:scale-110 cursor-pointer" />
+            </button>
+          }
           name="search"
           placeholder="검색"
           type="text"
           required
         />
-        <button className="ml-auto min-w-14 bg-stone-600 rounded-xl p-3">
-          검색
-        </button>
       </form>
-      <div className="flex flex-col gap-4 w-3/4">
+      <div className="flex flex-col gap-4 w-3/4 overflow-y-auto">
         {state!.map((item) => (
           <div
             key={item.id}
-            className="flex flex-col bg-blue-400 border-2 border-stone-300 rounded-xl p-2"
+            className="flex flex-col justify-center items-center bg-blue-300 border-2 border-black rounded-xl p-2 text-black h-[150px]"
           >
             <span className="text-lg">{item.tweet}</span>
-            <span className="text-sm">@{item.user.username}</span>
+            <span className="text-sm">작성자 : {item.user.username}</span>
           </div>
         ))}
       </div>

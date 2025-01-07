@@ -37,7 +37,7 @@ export default function TweetList({ initialProducts }: TweetWithUser) {
   return (
     <div className="flex flex-col gap-5 justify-center items-center">
       {/* 트윗 리스트 */}
-      <div className="flex flex-col gap-5 w-[600px] overflow-y-auto h-[500px] justify-center items-center">
+      <div className="flex flex-col gap-5 w-full max-w-[600px] overflow-y-auto h-full justify-center items-center">
         {tweets.map((tweet) => (
           <ListTweet key={tweet.id} {...tweet} view={0} />
         ))}

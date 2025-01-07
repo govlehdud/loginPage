@@ -19,7 +19,7 @@ export default async function Home() {
       <div className="flex justify-between w-full px-1">
         <Link
           href="/search"
-          className="flex flex-col items-center justify-center gap-px  w-20 rounded-lg hover:opacity-80 active:scale-95"
+          className="flex flex-col items-center justify-center gap-px  w-20 rounded-lg transition-transform hover:scale-110 cursor-pointer"
         >
           <MagnifyingGlassIcon className="size-7" />
         </Link>

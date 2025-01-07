@@ -12,17 +12,19 @@ export default function ListTweet({ tweet, id, created_at, user }: ITweet) {
   return (
     <Link href={`/tweet/${id}`}>
       <div
-        className="border-2 border-neutral-200 rounded-lg p-6 w-[400px] h-[100px] flex flex-col justify-center items-center"
+        className="border border-neutral-200 rounded-lg p-4 w-[400px] max-w-[600px] hover:border-neutral-400 
+        transition-all hover:shadow-md bg-white"
         key={id}
       >
-        <div className="p-3 flex flex-col gap-2 text-sm">
-          <h1 className="text-2xl text-left font-sans">{tweet}</h1>
-        </div>
-        <div className="flex justify-between w-full">
-          <div />
-          <div className="flex flex-col gap-2">
-            <span className="text-black/50 text-right">
-              {user.username} / {formatToTimeAgo(created_at.toString())}
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-full bg-neutral-200" />
+            <span className="font-medium">{user.username}</span>
+          </div>
+          <p className="text-lg text-neutral-800">{tweet}</p>
+          <div className="flex justify-end">
+            <span className="text-sm text-neutral-500">
+              {formatToTimeAgo(created_at.toString())}
             </span>
           </div>
         </div>

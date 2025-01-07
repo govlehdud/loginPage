@@ -5,7 +5,7 @@ export default function MyPage({ id }: { id: number }) {
   return (
     <Link href={`/users/${id}`}>
       <div
-        className="rounded-lg p-3 hover:opacity-60 active:scale-95 w-20 flex items-center justify-center"
+        className="rounded-lg p-3 transition-transform hover:scale-110 cursor-pointer w-20 flex items-center justify-center"
         key={id}
       >
         <UserIcon className="size-7" />
